@@ -1,16 +1,26 @@
 package springweb.backend.todo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
+
 @Service
 public class TodoService {
 
-    private final TodoRepository todoRepository;
+    TodoRepository todoRepository;
+
+/*
+    public TodoService(TodoRepository  todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+*/
+
 
     public List<Todo> getAll() {
         return todoRepository.findAll();

@@ -1,5 +1,7 @@
 package springweb.backend.todo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -7,11 +9,18 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/todo")
 public class TodoController {
-    private final TodoService todoService;
+    TodoService todoService;
+
+/*    public TodoController(TodoService  todoService) {
+        this.todoService = todoService;
+    }*/
+
 
     @GetMapping
     List<Todo> getAll(){

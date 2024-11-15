@@ -52,7 +52,7 @@
     </dependencies>
 
     <build>
-        <finalName>make-it-app</finalName>
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

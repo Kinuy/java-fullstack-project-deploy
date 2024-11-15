@@ -12,15 +12,15 @@ export default function App() {
     const [todos, setTodos] = useState<Todo[]>()
 
     function fetchTodos(){
-
-        axios.get("api/todo")
+        console.log("running")
+        axios.get("/api/todo")
             .then(response => {
                 setTodos(response.data)
             })
 
     }
 
-    useEffect(() => fetchTodos, []);
+    useEffect(() => fetchTodos(), []);
 
     if (!todos) {
         return "Lade..."
