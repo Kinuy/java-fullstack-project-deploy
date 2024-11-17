@@ -11,15 +11,16 @@ import java.util.List;
 
 
 
-@AllArgsConstructor
+//@AllArgsConstructor
+//@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/todo")
 public class TodoController {
     TodoService todoService;
 
-/*    public TodoController(TodoService  todoService) {
+    public TodoController(TodoService  todoService) {
         this.todoService = todoService;
-    }*/
+    }
 
 
     @GetMapping

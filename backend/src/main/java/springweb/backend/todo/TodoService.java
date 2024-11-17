@@ -8,18 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@AllArgsConstructor
-
+//@AllArgsConstructor
+//@RequiredArgsConstructor
 @Service
 public class TodoService {
 
     TodoRepository todoRepository;
 
-/*
     public TodoService(TodoRepository  todoRepository) {
         this.todoRepository = todoRepository;
     }
-*/
 
 
     public List<Todo> getAll() {
