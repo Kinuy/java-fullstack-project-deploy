@@ -20,6 +20,12 @@ export default function App() {
 
     }
 
+    function login(){
+        const host: string = window.location.host === 'localhost5173' ? 'http://localhost8080' : window.location.origin;
+
+        window.open(host + "/oauth2/authorization/github","_self")
+    }
+
     useEffect(() => fetchTodos(), []);
 
     if (!todos) {
@@ -28,6 +34,7 @@ export default function App() {
 
     return (
         <>
+            <button onClick={login}>Login</button>
             <div className="page">
                 <h1>TODOs</h1>
 
