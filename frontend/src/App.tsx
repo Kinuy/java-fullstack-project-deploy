@@ -21,9 +21,14 @@ export default function App() {
     }
 
     function login(){
-        const host: string = window.location.host === 'localhost5173' ? 'http://localhost8080' : window.location.origin;
+        //const host: string = window.location.host === 'localhost5173' ? 'http://localhost8080' : window.location.origin;
 
-        window.open(host + "/oauth2/authorization/github","_self")
+        window.open("http://localhost:8080/oauth2/authorization/github","_self")
+        //window.open(host + "/oauth2/authorization/github","_self")
+    }
+
+    function loadCurrentUsre(){
+        axios.get("api/users/me").then((response) => {console.log(response.data)})
     }
 
     useEffect(() => fetchTodos(), []);
@@ -35,6 +40,7 @@ export default function App() {
     return (
         <>
             <button onClick={login}>Login</button>
+            <button onClick={loadCurrentUsre}>Me</button>
             <div className="page">
                 <h1>TODOs</h1>
 
