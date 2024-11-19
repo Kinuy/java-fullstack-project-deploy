@@ -19,7 +19,7 @@ export default function TodoCard(props: Props) {
     }
 
     function changeText(event: React.ChangeEvent<HTMLInputElement>) {
-        let newDescription = event.target.value
+        const newDescription = event.target.value
         setDescription(newDescription)
         axios.put("api/todo/" + props.todo.id, {
             id: props.todo.id,

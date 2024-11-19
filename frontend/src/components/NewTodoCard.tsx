@@ -1,4 +1,3 @@
-import * as React from "react";
 import {useState} from "react";
 import {Todo} from "../Todo.ts";
 import axios from "axios";

@@ -1,6 +1,7 @@
 package springweb.backend.security;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,6 +19,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Value("${app.url}")
+    private String appUrl;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -25,11 +29,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a->a
                         .requestMatchers(HttpMethod.GET,"/api/todo").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/todo").authenticated()
-                        .requestMatchers(HttpMethod.GET,"/api/todo/me").authenticated()
+                        //.requestMatchers(HttpMethod.DELETE,"/api/todo/*").authenticated()
+                        .requestMatchers(HttpMethod.GET,"/api/users/me").authenticated()
                         //.anyRequest().authenticated()
                         .anyRequest().permitAll())
                 .sessionManagement(sessions-> sessions.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .oauth2Login(o->o.defaultSuccessUrl("http://localhost:5173"))
+                .oauth2Login(o->o.defaultSuccessUrl(appUrl))
+                .logout(l->l.logoutSuccessUrl(appUrl))
                 .exceptionHandling(e->e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
         return http.build();
     }
