@@ -6,17 +6,21 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springweb.backend.AppUser;
+import springweb.backend.AppUserService;
 
 @RestController
 @RequestMapping("/api/users/me")
 public class UserController {
-    @GetMapping()
-    public String getCurrentUser(@AuthenticationPrincipal OAuth2User user) {
-        System.out.println(user);
-        if(user != null) {
-            return user.getAttributes().get("login").toString();
-        }
-        return "anonymousUser";
+    private final AppUserService appUserService;
 
+    public UserController(AppUserService appUserService) {
+        this.appUserService = appUserService;
+    }
+
+    @GetMapping
+    public AppUser getCurrentUser(@AuthenticationPrincipal OAuth2User user) {
+        System.out.println(user);
+        return appUserService.getUserById(user.getName());
     }
 }

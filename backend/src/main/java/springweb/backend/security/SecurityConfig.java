@@ -31,6 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/api/todo").authenticated()
                         //.requestMatchers(HttpMethod.DELETE,"/api/todo/*").authenticated()
                         .requestMatchers(HttpMethod.GET,"/api/users/me").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/todo/*").hasAuthority("ADMIN")
                         //.anyRequest().authenticated()
                         .anyRequest().permitAll())
                 .sessionManagement(sessions-> sessions.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
